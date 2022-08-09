@@ -4,21 +4,26 @@ import br.com.alura.forum.dto.AtualizacaoTopicoForm
 import br.com.alura.forum.dto.NovoTopicoForm
 import br.com.alura.forum.dto.TopicoView
 import br.com.alura.forum.service.TopicoService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
 import javax.validation.Valid
-import javax.validation.constraints.NotNull
 
 @RestController
 @RequestMapping("/topicos")
 class TopicoController(private val service: TopicoService) {
 
     @GetMapping
-    fun listar(): List<TopicoView> {
-        return service.listar()
+    fun listar(
+        @RequestParam(required = false) nomeCurso: String?,
+        @PageableDefault(size = 3) paginacao: Pageable
+    ): Page<TopicoView> {
+        return service.listar(nomeCurso,paginacao)
     }
 
     @GetMapping("/{id}")
