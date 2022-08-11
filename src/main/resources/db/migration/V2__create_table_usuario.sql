@@ -4,4 +4,4 @@ nome varchar(50) not null,
 email varchar(50) not null,
 primary key(id));
 
-insert into usuario values(1,'Leonardo','leonardo.pereira@fgv.edu.br');
+insert into usuario values(1,'Ana','ana@ana.com');

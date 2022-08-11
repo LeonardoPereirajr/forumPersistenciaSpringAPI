@@ -1,0 +1,1 @@
+alter table usuario ADD COLUMN password text;
